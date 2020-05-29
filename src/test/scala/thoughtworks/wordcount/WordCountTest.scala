@@ -9,7 +9,7 @@ import thoughtworks.DefaultFeatureSpecWithSpark
 
 class WordCountTest extends DefaultFeatureSpecWithSpark {
   feature("Word Count application") {
-    ignore("Acceptance test for basic use") {
+    scenario("Acceptance test for basic use") {
       Given("A simple input file, a Spark context, and a known output file")
 
       val rootDirectory = Files.createTempDirectory(this.getClass.getName)
@@ -44,6 +44,7 @@ class WordCountTest extends DefaultFeatureSpecWithSpark {
         .foldRight(Set[String]())((file, lineSet) =>
           lineSet ++ FileUtils.readLines(file).asScala)
         .map(_.trim)
+
       val expectedLines = Set("worst,1",
         "times,2",
         "was,4",
@@ -59,7 +60,7 @@ class WordCountTest extends DefaultFeatureSpecWithSpark {
       FileUtils.deleteDirectory(rootDirectory.toFile)
     }
 
-    ignore("Acceptance test for advanced use") {
+    scenario("Acceptance test for advanced use") {
       Given("A simple input file, a Spark context, and a known output file")
 
       val rootDirectory = Files.createTempDirectory(this.getClass.getName)
